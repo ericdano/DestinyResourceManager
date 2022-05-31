@@ -42,7 +42,17 @@ elif r.status_code == 200:
     auth_token = accesstoken["access_token"]
     auth_token_header_value = "Bearer %s" % auth_token
     auth_token_header = {"Authorization": auth_token_header_value}
+    #req = configs['destiny_access_base_url'] + "materials/resources/items?itemBarcode='a00007999'"
     req = configs['destiny_access_base_url'] + "materials/resources/items"
     r2 = requests.get(req, headers=auth_token_header)
     print(r2.status_code)
-    print(r2.json())
+    #print(r2.json())
+    j = r2.json()
+    df = pd.DataFrame.from_dict(j)
+    #results = pd.concat([pd.json_normalize(r2.json()), pd.json_normalize(r2.json(),record_path="Students", max_level=2)], axis=1).drop(columns='Students')
+    #df=pd.json_normalize(r2.json(),record_path="value", max_level=1)
+    #print(r2.keys())
+    #json_formatted_str = json.dumps(r2, indent=1)
+    #print(json_formatted_str)
+    #df = pd.DataFrame[]
+    print(df)
